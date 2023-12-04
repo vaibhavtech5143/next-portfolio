@@ -24,6 +24,27 @@ export async function getData(currentSelectedTab,formData){
             method:"GET",
         });
         const result = await response.json();
+        console.log(result);
+        return result;
+
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export async function updateData(currentSelectedTab,formData){
+    try {
+
+        const response = await fetch(`/api/${currentSelectedTab}/update`,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(formData),
+        });
+        const result = await response.json();
         return result;
 
         
