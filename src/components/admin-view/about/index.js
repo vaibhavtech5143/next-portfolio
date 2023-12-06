@@ -1,3 +1,4 @@
+"use client"
 import Formcontrols from "../form-controls";
 const controls = [
   {

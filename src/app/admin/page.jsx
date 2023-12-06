@@ -9,7 +9,6 @@ import AdminProjectsView from "@/components/admin-view/projects";
 import { addData, getData ,updateData} from "@/services";
 import { useEffect, useState } from "react";
 
-
 const initialHomeFormData = {
   heading:"",
   summary:"",
@@ -53,9 +52,9 @@ const Admin = () => {
   const[experienceViewFormData,setexperienceViewFormData] = useState(initialexperienceFormData)
   const[projectsViewFormData,setprojectsViewFormData] = useState(initialprojectsFormData)
   const[login,setlogin] = useState(false)
-const [currentSelectedTab,setcurrentSelectedTab] = useState('home');
-const[allData,setAllData] = useState({});
-const[update,setUpdate]=useState(false)
+  const[currentSelectedTab,setcurrentSelectedTab] = useState('home');
+  const[allData,setAllData] = useState({});
+  // const[update,setUpdate]=useState(false)
 
 const menuItems= [
   {
@@ -95,14 +94,17 @@ const menuItems= [
 
 async function extractAllDatas(){
   const response = await getData(currentSelectedTab);
+  console.log("resp",response);
 
 if(currentSelectedTab === 'home' && response && response.data && response.data.length){
   sethomeViewFormData(response && response.data[0]);
-  setUpdate(false)
+  console.log("Set Value Of Home View",homeViewFormData);
+  // setUpdate(false)
 }
 if(currentSelectedTab === 'about' && response && response.data && response.data.length){
   setaboutViewFormData(response && response.data[0]);
-  setUpdate(false)
+  console.log("Set Value Of about View",aboutViewFormData);
+  // setUpdate(false)
 }
 
   
@@ -125,21 +127,24 @@ async function handleSaveData(){
 
   }
 
-  console.log("update1",update);
+  // console.log("update1",update);
 
-  const response = update
-  ? await updateData(currentSelectedTab, dataMap[currentSelectedTab])
-: await addData(currentSelectedTab, dataMap[currentSelectedTab]);
-setUpdate(false); 
+  const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
+// setUpdate(false); 
 
-  console.log("update2",update);
+
+// const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
+// setUpdate(false); 
+
+
+  // console.log("update2",update);
   console.log("resp",response);
 
 
   if(response?.success){
-    resetForm();
     extractAllDatas();
-    setUpdate(false); 
+    resetForm();
+    // setUpdate(false); 
 
   }
 }
@@ -183,7 +188,7 @@ function resetForm(){
         <button key={item.id} className="mr-5 hover:text-gray-900inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 active:bg-cyan-200" onClick={()=>{
           setcurrentSelectedTab(item.id);
           resetForm();
-          setUpdate(true)
+          
         
         }}>{item.label}</button>
       )

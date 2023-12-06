@@ -1,17 +1,26 @@
 import mongoose from "mongoose";
 
-const ExperienceSchema = new mongoose.Schema({
-    position: String,
-    company: String,
-    duration: String,
-    location: String,
-    jobprofile: String,
-},{
-    timestamps: true
-})
+let Experience;
 
+try {
 
-
-const Experience = mongoose.model("Experience",ExperienceSchema);
+    Experience = mongoose.model("Experience")
+   
+} catch {
+    const ExperienceSchema = new mongoose.Schema({
+        position: String,
+        company: String,
+        duration: String,
+        location: String,
+        jobprofile: String,
+    },{
+        timestamps: true
+    })
+    
+    
+    
+    
+    Experience = mongoose.model("Experience",ExperienceSchema);
+}
 
 export default Experience
