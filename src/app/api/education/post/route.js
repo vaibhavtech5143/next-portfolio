@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-export async function POST  (req){
+export async function POST(req){
 try {
     await connectToDB();
     const extractData = await req.json();
@@ -15,7 +15,7 @@ try {
         return NextResponse.json({
             success: true,
             message: "Data Saved Successfully"
-        })
+        });
 
     }
     else{
@@ -29,6 +29,7 @@ try {
     return NextResponse.json({
         success: false,
         message: "Data Not Saved Successfully !Please Try Again",
+        error:error.message
     });
 
     

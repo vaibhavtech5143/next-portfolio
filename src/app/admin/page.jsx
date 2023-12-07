@@ -54,7 +54,7 @@ const Admin = () => {
   const[login,setlogin] = useState(false)
   const[currentSelectedTab,setcurrentSelectedTab] = useState('home');
   const[allData,setAllData] = useState({});
-  // const[update,setUpdate]=useState(false)
+  const[update,setUpdate]=useState(false)
 
 const menuItems= [
   {
@@ -65,22 +65,23 @@ const menuItems= [
   {
     id: "about",
     label:"About",
-    component:<AdminAboutView  formData={aboutViewFormData} setFormData={setaboutViewFormData} handleSaveData={handleSaveData}  />
+    component:<AdminAboutView  formData={aboutViewFormData} setFormData={setaboutViewFormData} handleSaveData={handleSaveData} />
+  
 },
   {
     id: "experience",
     label:"Experience",
-    component:<AdminExperienceView  formData={experienceViewFormData} setFormData={setexperienceViewFormData} handleSaveData={handleSaveData}  />
+    component:<AdminExperienceView  formData={experienceViewFormData} setFormData={setexperienceViewFormData} handleSaveData={handleSaveData}   data={allData?.experience} />
 },
   {
     id: "education",
     label:"Education",
-    component:<AdminEducationView  formData={educationViewFormData} setFormData={seteducationViewFormData} handleSaveData={handleSaveData}  />
+    component:<AdminEducationView  formData={educationViewFormData} setFormData={seteducationViewFormData} handleSaveData={handleSaveData} data={allData?.education} />
 },
   {
     id: "projects",
     label:"Projects",
-    component:<AdminProjectsView  formData={projectsViewFormData} setFormData={setprojectsViewFormData} handleSaveData={handleSaveData}  />
+    component:<AdminProjectsView  formData={projectsViewFormData} setFormData={setprojectsViewFormData} handleSaveData={handleSaveData} data={allData?.projects}  />
 },
 
   {
@@ -99,12 +100,12 @@ async function extractAllDatas(){
 if(currentSelectedTab === 'home' && response && response.data && response.data.length){
   sethomeViewFormData(response && response.data[0]);
   console.log("Set Value Of Home View",homeViewFormData);
-  // setUpdate(false)
+  setUpdate(true)
 }
 if(currentSelectedTab === 'about' && response && response.data && response.data.length){
   setaboutViewFormData(response && response.data[0]);
   console.log("Set Value Of about View",aboutViewFormData);
-  // setUpdate(false)
+  setUpdate(true)
 }
 
   
@@ -129,7 +130,7 @@ async function handleSaveData(){
 
   // console.log("update1",update);
 
-  const response = await addData(currentSelectedTab, dataMap[currentSelectedTab]);
+  const response = update? await updateData(currentSelectedTab, dataMap[currentSelectedTab]): await addData(currentSelectedTab, dataMap[currentSelectedTab]);
 // setUpdate(false); 
 
 
@@ -188,6 +189,7 @@ function resetForm(){
         <button key={item.id} className="mr-5 hover:text-gray-900inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 active:bg-cyan-200" onClick={()=>{
           setcurrentSelectedTab(item.id);
           resetForm();
+          setUpdate(false)
           
         
         }}>{item.label}</button>

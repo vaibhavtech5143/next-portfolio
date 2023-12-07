@@ -1,13 +1,9 @@
 import connectToDB from "@/database";
 import Education from "@/models/Education";
-
-
 import { NextResponse } from "next/server";
-
-
 export const dynamic = "force-dynamic";
 
-async function GET(req){
+export async function GET(req){
 
     try {
         await connectToDB();

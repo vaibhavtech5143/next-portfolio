@@ -1,15 +1,22 @@
 import mongoose from "mongoose";
 
-const EducationSchema = new mongoose.Schema({
-  degree: String,
-  year: String,
-  college: String,
-},{
-    timestamps: true
-})
 
+let Education;
 
+try {
+  Education = mongoose.model("Education");
+  
+} catch {
 
-const Education = mongoose.model("Education",EducationSchema);
+  const EducationSchema = new mongoose.Schema({
+    degree: String,
+    year: String,
+    college: String,
+  },{
+      timestamps: true
+  })
+  Education = mongoose.model("Education",EducationSchema);  
+  
+}
 
 export default Education

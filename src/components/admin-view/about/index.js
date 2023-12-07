@@ -35,7 +35,11 @@ const controls = [
 const AdminAboutView = ({formData, setFormData,handleSaveData}) => {
   return (
     <div className="h-auto flex flex-col justify-center items-center mt-10 border">
+
     <div className="bg-[#ffffff] shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+
+
+
     <Formcontrols controls={controls} formData={formData} setFormData ={setFormData} />
     
     

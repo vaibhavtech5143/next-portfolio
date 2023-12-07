@@ -19,9 +19,17 @@ const controls = [
     label: "Enter College Name",
   },
 ];
-const AdminEducationView = ({formData, setFormData,handleSaveData}) => {
+const AdminEducationView = ({formData, setFormData,handleSaveData,data}) => {
   return (
     <div className="h-auto flex flex-col justify-center items-center mt-10 border">
+    <div className="mb-4 display flex flex-col border"> {data?.map(item=>
+      <div key={item._id} className="display flex flex-row border font-medium">
+      <p>degree: ,{item.degree}</p>
+      <p>year: {item.year}</p>
+      <p>college: {item.college}</p>
+
+      </div>
+    )}</div>
     <div className="bg-[#ffffff] shadow-lg rounded px-8 pt-6 pb-8 mb-4">
     <Formcontrols controls={controls} formData={formData} setFormData ={setFormData} />
     

@@ -1,3 +1,4 @@
+import { Table } from "@mui/material";
 import Formcontrols from "../form-controls";
 const controls = [
   {
@@ -32,9 +33,18 @@ const controls = [
   },
 ];
 
-const AdminExperienceView = ({formData, setFormData,handleSaveData}) => {
+const AdminExperienceView = ({formData, setFormData,handleSaveData,data}) => {
     return (
       <div className="h-auto flex flex-col justify-center items-center mt-10 border">
+      <div className="mb-4 display flex flex-col border"> {data?.map(item=>
+        <div key={data._id} className="display flex flex-row border font-medium">
+        <p>position: ,{item.position}</p>
+        <p>company: {item.company}</p>
+        <p>duration: {item.duration}</p>
+        <p>location: {item.location}</p>
+        <p>jobprofile: {item.jobprofile}</p>
+        </div>
+      )}</div>
       <div className="bg-[#ffffff] shadow-lg rounded px-8 pt-6 pb-8 mb-4">
       <Formcontrols controls={controls} formData={formData} setFormData ={setFormData} />
       </div>

@@ -32,9 +32,22 @@ const controls = [
   },
 ];
 
-const AdminProjectsView = ({formData, setFormData,handleSaveData}) => {
+const AdminProjectsView = ({formData, setFormData,handleSaveData,data}) => {
   return (
     <div className="h-auto flex flex-col justify-center items-center mt-10 border">
+        <div className="mb-4 display flex flex-col border"> {data?.map(item=>
+      <div key={item._id} className="display flex flex-row border font-medium">
+      <p>name: ,{item.name}</p>
+      <p>technologies: {item.technologies}</p>
+      <p>website: {item.website}</p>
+     <p>github: {item.github}</p>
+      <p>demo: {item.demo}</p>
+
+
+
+      </div>
+    )}</div>
+    
     <div className="bg-[#ffffff] shadow-lg rounded px-8 pt-6 pb-8 mb-4">
     <Formcontrols controls={controls} formData={formData} setFormData ={setFormData} />
     
