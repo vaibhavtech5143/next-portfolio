@@ -5,6 +5,7 @@ import AdminContactView from "@/components/admin-view/contact";
 import AdminEducationView from "@/components/admin-view/education";
 import AdminExperienceView from "@/components/admin-view/experience";
 import AdminHomeView from "@/components/admin-view/home";
+import Login from "@/components/admin-view/login";
 import AdminProjectsView from "@/components/admin-view/projects";
 import { addData, getData ,updateData} from "@/services";
 import { useEffect, useState } from "react";
@@ -45,6 +46,12 @@ const initialprojectsFormData = {
 
 }
 
+
+const initialLoginFormData={
+  username:"",
+  password:"",
+}
+
 const Admin = () => {
   const[homeViewFormData,sethomeViewFormData] = useState(initialHomeFormData)
   const[aboutViewFormData,setaboutViewFormData] = useState(initialaboutFormData)
@@ -54,7 +61,12 @@ const Admin = () => {
   const[login,setlogin] = useState(false)
   const[currentSelectedTab,setcurrentSelectedTab] = useState('home');
   const[allData,setAllData] = useState({});
-  const[update,setUpdate]=useState(false)
+  const[update,setUpdate]=useState(false);
+  const[authUser,setAuthUser] = useState(false);
+  const[loginForm,setLoginForm]= useState(initialLoginFormData);
+
+
+ 
 
 const menuItems= [
   {
@@ -173,7 +185,7 @@ function resetForm(){
 
 // console.log(allData,homeViewFormData,"homeViewFormData");
 
-
+if(!authUser) return<Login formData={loginForm} setFormData={setLoginForm}/>
   return (
     <div className="text-gray-600 body-font">
   <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">

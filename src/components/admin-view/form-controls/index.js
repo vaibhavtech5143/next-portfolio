@@ -1,13 +1,7 @@
 "use client"
 
 export default function Formcontrols({ controls, formData, setFormData }) {
-
-
-
-
   return controls.map((controlItem) => (
-
-   
 <div
       key={controlItem.name}
       className="text-gray-600 align-center h-100%  mt-10"
