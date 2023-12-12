@@ -47,10 +47,6 @@ const initialprojectsFormData = {
 }
 
 
-const initialLoginFormData={
-  username:"",
-  password:"",
-}
 
 const Admin = () => {
   const[homeViewFormData,sethomeViewFormData] = useState(initialHomeFormData)
@@ -63,7 +59,7 @@ const Admin = () => {
   const[allData,setAllData] = useState({});
   const[update,setUpdate]=useState(false);
   const[authUser,setAuthUser] = useState(false);
-  const[loginForm,setLoginForm]= useState(initialLoginFormData);
+
 
 
  
@@ -185,7 +181,7 @@ function resetForm(){
 
 // console.log(allData,homeViewFormData,"homeViewFormData");
 
-if(!authUser) return<Login formData={loginForm} setFormData={setLoginForm}/>
+if(!authUser) return<Login />
   return (
     <div className="text-gray-600 body-font">
   <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
